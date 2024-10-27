@@ -16,14 +16,13 @@ export class ContactFormComponent implements OnInit {
   @Output() cancel = new EventEmitter<void>(); // Emits a cancel event
 
   contactForm!: FormGroup;
-  emailRegEx = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
       firstName: [this.contact.firstName, Validators.required],
       lastName: [this.contact.lastName, Validators.required],
-      email: [this.contact.email, [Validators.required, Validators.email,Validators.pattern(this.emailRegEx)]],
+      email: [this.contact.email, [Validators.required, Validators.email]],
     });
   }
 

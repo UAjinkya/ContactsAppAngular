@@ -23,9 +23,11 @@
     <div class="mb-3">
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" class="form-control" />
-      <small class="text-danger" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-        Valid Email ID is required
-      </small> 
+      <div *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.touched)">
+        <small class="text-danger"  *ngIf="contactForm.get('email')?.errors?.['required']">Email is required.</small>
+        <small class="text-danger"  *ngIf="contactForm.get('email')?.errors?.['email']">Invalid email format.</small>
+      </div>
+      
     </div>
 
     <button type="submit" class="btn btn-success me-1">{{ contact.id === 0 ? 'Add' : 'Save' }}</button>
